@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    return redirect_to '/submission' if find_amazon_id(sanitize_params[:url]) == 'no amazon id'
     amazon_id = find_amazon_id(sanitize_params[:url])
     product = product_from_amazon(amazon_id)
     hash = sanitize_params.merge({ title: product[:title], price: product[:price], image: product[:image] })
@@ -22,6 +23,9 @@ class ProductsController < ApplicationController
 
   def sanitize_params
     params.require(:product).permit(:url, :budget)
+  end
+
+  def submission
   end
 
   private

@@ -37,5 +37,19 @@ feature 'products' do
     end
   end
 
+    context 'adding incorrect links from Amazon' do
+      before do
+        visit '/'
+        click_button 'Watch new item'
+        fill_in 'Url', with: 'http://www.amazon.co.uk/gp/prot/B0000256XN'
+        fill_in 'Budget', with: 0.80
+        click_button 'Watch item'
+      end
+
+      scenario 'it redirects to an error page on not receing a correct url' do
+        expect(current_path).to eq '/submission'
+        expect(page).to have_content 'Sorry, product not found. Submitted to our team for investigation.'
+      end
+    end
 
 end

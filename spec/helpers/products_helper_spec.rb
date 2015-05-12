@@ -35,13 +35,13 @@ RSpec.describe ProductsHelper, type: :helper do
       expect(helper.find_amazon_id('http://www.amazon.co.uk/gp/product/B00IIK30UQ?ref_=gb1h_img_c-2_8707_8847b92e&smid=A3P5ROKL5A1OLE')).to eq 'B00IIK30UQ'
     end
 
-    it "throws error when url does not match" do
-      expect { helper.find_amazon_id('http://www.amazon.co.uk/Greatest-Hits-Will-Smith/dp/') }.to raise_error 'no amazon id'
+    it "returns 'no amazon id' when url does not match" do
+      expect(helper.find_amazon_id('http://www.amazon.co.uk/Greatest-Hits-Will-Smith/dp/')).to eq 'no amazon id'
     end
 
     it "logs url for admin if does not match" do
       expect(Rails.logger).to receive(:warn).with("FAILED TO PARSE AMAZON ID FROM: http://www.amazon.co.uk/Greatest-Hits-Will-Smith/dp/")
-      expect { helper.find_amazon_id('http://www.amazon.co.uk/Greatest-Hits-Will-Smith/dp/') }.to raise_error 'no amazon id'
+      expect(helper.find_amazon_id('http://www.amazon.co.uk/Greatest-Hits-Will-Smith/dp/')).to eq 'no amazon id'
     end
   end
 

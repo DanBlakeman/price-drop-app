@@ -20,7 +20,7 @@ module ProductsHelper
       /\/product\/(.*)[\?]/.match(url)[1]
     else
       logger.warn "FAILED TO PARSE AMAZON ID FROM: #{url}"
-      fail 'no amazon id'
+      'no amazon id'
     end
   end
 
