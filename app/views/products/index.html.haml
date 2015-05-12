@@ -29,6 +29,7 @@
         %th Price Change
         %th Budget
       -for product in @products
+
         - current_price = format_amazon_price_response(get_amazon_price(find_amazon_id(product.url)))
         %tr
           %td

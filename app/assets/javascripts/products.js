@@ -23,8 +23,5 @@ $(document).on('ready page:load',function() {
       $(this).css({'background-color': '#18BC9C', 'color' : 'white'});
       $(this).find('.url').css('color', 'white')
     }
-
   });
-
-
 });

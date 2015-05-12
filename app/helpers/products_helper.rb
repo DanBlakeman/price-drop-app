@@ -27,13 +27,16 @@ module ProductsHelper
   def get_amazon_price amazon_id
     request = Vacuum.new('GB')
     request.associate_tag = 'pridro02-20'
-    response = request.item_lookup(
-      query: {'Condition'=>'New',
-              'IdType'=>'ASIN',
-              'ItemId'=>amazon_id,
-              'Operation'=>'ItemLookup',
-              'ResponseGroup'=>'OfferSummary'})
-    response.to_h
+    begin
+      response = request.item_lookup(
+        query: {'Condition'=>'New',
+                'IdType'=>'ASIN',
+                'ItemId'=>amazon_id,
+                'Operation'=>'ItemLookup',
+                'ResponseGroup'=>'OfferSummary'})
+      response.to_h
+    rescue
+    end
   end
 
   def format_amazon_price_response(hashed_response)
