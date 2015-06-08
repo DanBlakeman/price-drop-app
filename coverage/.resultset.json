@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/rob/GDrive/code/price-drop-app/spec/controllers/products_controller_spec.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/spec/controllers/products_controller_spec.rb": [
         1,
         1,
         null,
@@ -17,7 +17,7 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/spec/rails_helper.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -70,14 +70,14 @@
         1,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/environment.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/application.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/application.rb": [
         1,
         null,
         1,
@@ -114,12 +114,12 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/boot.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/environments/test.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/environments/test.rb": [
         1,
         null,
         null,
@@ -163,7 +163,7 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/assets.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -176,7 +176,7 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/backtrace_silencers.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -185,18 +185,18 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/cookies_serializer.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/filter_parameter_logging.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/inflections.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -214,24 +214,24 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/mime_types.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/session_store.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/vacuum.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/vacuum.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/config/initializers/wrap_parameters.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -240,70 +240,6 @@
         null,
         1,
         1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/rob/GDrive/code/price-drop-app/config/routes.rb": [
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         null,
         null,
         null,
@@ -311,11 +247,75 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/app/helpers/application_helper.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/config/routes.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/dan/Desktop/Dev/price-drop-app/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/app/helpers/products_helper.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/app/helpers/products_helper.rb": [
         1,
         null,
         1,
@@ -346,6 +346,7 @@
         4,
         4,
         4,
+        4,
         null,
         null,
         null,
@@ -353,6 +354,8 @@
         null,
         4,
         null,
+        0,
+        null,
         null,
         1,
         5,
@@ -361,7 +364,7 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/spec/amazon_helper.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/spec/amazon_helper.rb": [
         1,
         null,
         1,
@@ -504,7 +507,7 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/app/controllers/products_controller.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/app/controllers/products_controller.rb": [
         1,
         null,
         1,
@@ -562,14 +565,14 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/app/controllers/application_controller.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/spec/features/products_feature_spec.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/spec/features/products_feature_spec.rb": [
         1,
         null,
         1,
@@ -626,7 +629,7 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/spec/helpers/products_helper_spec.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/spec/helpers/products_helper_spec.rb": [
         1,
         null,
         null,
@@ -705,18 +708,18 @@
         null,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/spec/models/product_spec.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/spec/models/product_spec.rb": [
         1,
         null,
         1,
         1,
         null
       ],
-      "/Users/rob/GDrive/code/price-drop-app/app/models/product.rb": [
+      "/Users/dan/Desktop/Dev/price-drop-app/app/models/product.rb": [
         1,
         null
       ]
     },
-    "timestamp": 1431440913
+    "timestamp": 1433765264
   }
 }

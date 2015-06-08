@@ -1,12 +1,26 @@
 [![Build Status](https://travis-ci.org/DanBlakeman/price-drop-app.svg)](https://travis-ci.org/DanBlakeman/price-drop-app)
 [![Coverage Status](https://coveralls.io/repos/DanBlakeman/price-drop-app/badge.svg)](https://coveralls.io/r/DanBlakeman/price-drop-app)
 
-Creating an app to give alerts on amazon price drops!
------
+# Amazong
 
-User Stories:
------
+## Save money - get alerts when Amazon drops its price on products you pick!
 
+![screenshot](/public/Screenshot.png)
+
+## What is it?
+
+Rails app made using TDD in less than 48 hours, lets you add Amazon products and a budget to the homepage, and visually see their price change on return visit and an alert if they are within your budget.
+
+## USPs?
+
+Users can paste any amazon link - Our backend will find and extract the correct product ID and query Amazon via API to get its best current price.
+
+If for some reason the link cannot be parsed for product ID, user is informed, and the app will log the URL and alert admins to investigate reason.
+
+On return visit a second API call is made and our frontend will display any price changes, and alert if they are within the budget you set.
+
+## User Stories used to drive Dev
+```
 As a voyeuristic consumer
 So that i can see products
 I want to see products listed on the homepage
@@ -19,177 +33,79 @@ As a price motivated user
 So that i can get a great deal
 I want to see when i next visit if a product is within my budget
 
+As a price motivated user
+So that i can get a great deal
+I want to see any price change even if product is not within my budget
+
+As a passionate product owner
+So that i can keep improving my web app
+I'd like to keep a log of any URLs users give that could not be parsed.
+
 As a fickle user
 So that i can get a buzz
 I want the app to look and behave gorgeously
-
-MVps:
------
-
-  - Can add amazon link to list with a budget
-
-  - Can access current price
-
-  - Can identify products that are in budget
-      - Further Styling
-
-
-Accessing the Amazon Product Advertising API
------
-
-We can use the [Vacuum Gem](https://rubygems.org/gems/vacuum/versions/1.2.0) to access the API and supply the various query parameters required. Vacuum Gem [documentation](https://github.com/hakanensari/vacuum).
-
-A simple run through of accessing the data we need would be to
-```ruby
-request = Vacuum.new('GB')
-
-request.configure(
-    aws_access_key_id: 'key_here',
-    aws_secret_access_key: 'secret_here',
-    associate_tag: 'tag_here'
-)
-
-response = request.item_lookup(query: {'Condition'=>'New','IdType'=>'ASIN','ItemId'=>'B0038K6MY2','Operation'=>'ItemLookup','ResponseGroup'=>'ItemAttributes,OfferSummary'})
-
-hashed_response = response.to_h
-
-price = hashed_response['ItemLookupResponse']['Items']['Item']['OfferSummary']['LowestNewPrice']['FormattedPrice']
-
-title =hashed_response['ItemLookupResponse']['Items']['Item']['ItemAttributes']['Title']
-
 ```
-The following xml is returned, it is possible to run `response.to_h` to retrieve a ruby hash though it is also possible to use an xml parser, this needs to be investigated for best solution.
+## MVps celebrated:
 
-```xml
-<ItemLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2011-08-01">
-  <OperationRequest>
-    <HTTPHeaders>
-      <Header Name="UserAgent" Value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36"/>
-    </HTTPHeaders>
-    <RequestId>6df6c121-31a1-4761-a860-fa1d8196cff7</RequestId>
-    <Arguments>
-      <Argument Name="AWSAccessKeyId" Value="AKIAIRBKK35SHPHUR23Q"/>
-      <Argument Name="AssociateTag" Value="pridro02-20"/>
-      <Argument Name="Condition" Value="New"/>
-      <Argument Name="IdType" Value="ASIN"/>
-      <Argument Name="ItemId" Value="B0038K6MY2"/>
-      <Argument Name="Operation" Value="ItemLookup"/>
-      <Argument Name="ResponseGroup" Value="ItemAttributes,Offers"/>
-      <Argument Name="Service" Value="AWSECommerceService"/>
-      <Argument Name="Timestamp" Value="2015-05-11T14:05:02.000Z"/>
-      <Argument Name="Version" Value="2011-08-01"/>
-      <Argument Name="Signature" Value="FW8+d171SGpudEGmv89uVj7YeASTjaitz0ZM4fF85PY="/>
-    </Arguments>
-    <RequestProcessingTime>0.0178570000000000</RequestProcessingTime>
-  </OperationRequest>
-  <Items>
-    <Request>
-      <IsValid>True</IsValid>
-      <ItemLookupRequest>
-        <Condition>New</Condition>
-        <IdType>ASIN</IdType>
-        <ItemId>B0038K6MY2</ItemId>
-        <ResponseGroup>ItemAttributes</ResponseGroup>
-        <ResponseGroup>Offers</ResponseGroup>
-        <VariationPage>All</VariationPage>
-      </ItemLookupRequest>
-    </Request>
-    <Item>
-      <ASIN>B0038K6MY2</ASIN>
-      <ParentASIN>B00LHS270U</ParentASIN>
-      <DetailPageURL>
-      http://www.amazon.co.uk/Portta-Version-Switcher-Pigtail-compatible-Black/dp/B0038K6MY2%3Fpsc%3D1%26SubscriptionId%3DAKIAIRBKK35SHPHUR23Q%26tag%3Dpridro02-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB0038K6MY2
-      </DetailPageURL>
-      <ItemLinks>
-        <ItemLink>
-          <Description>Add To Wishlist</Description>
-          <URL>
-          http://www.amazon.co.uk/gp/registry/wishlist/add-item.html%3Fasin.0%3DB0038K6MY2%26SubscriptionId%3DAKIAIRBKK35SHPHUR23Q%26tag%3Dpridro02-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0038K6MY2
-          </URL>
-        </ItemLink>
-        <ItemLink>
-          <Description>Tell A Friend</Description>
-          <URL>
-          http://www.amazon.co.uk/gp/pdp/taf/B0038K6MY2%3FSubscriptionId%3DAKIAIRBKK35SHPHUR23Q%26tag%3Dpridro02-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0038K6MY2
-          </URL>
-        </ItemLink>
-        <ItemLink>
-          <Description>All Customer Reviews</Description>
-          <URL>
-          http://www.amazon.co.uk/review/product/B0038K6MY2%3FSubscriptionId%3DAKIAIRBKK35SHPHUR23Q%26tag%3Dpridro02-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0038K6MY2
-          </URL>
-        </ItemLink>
-        <ItemLink>
-          <Description>All Offers</Description>
-          <URL>
-          http://www.amazon.co.uk/gp/offer-listing/B0038K6MY2%3FSubscriptionId%3DAKIAIRBKK35SHPHUR23Q%26tag%3Dpridro02-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D12734%26creativeASIN%3DB0038K6MY2
-          </URL>
-        </ItemLink>
-      </ItemLinks>
-      <ItemAttributes>
-        <Binding>Accessory</Binding>
-        <Brand>Portta</Brand>
-        <CatalogNumberList>
-        <CatalogNumberListElement>2407770011</CatalogNumberListElement>
-        </CatalogNumberList>
-        <Color>Black</Color>
-        <EAN>5060186819051</EAN>
-        <EANList>
-          <EANListElement>5060186819051</EANListElement>
-        </EANList>
-        <Feature>
-        Hassle Free Easy to open Packaging (sealed poly bag)
-        </Feature>
-        <Feature>
-        Exclusively Sold By World of Data® & Distributed By Amazon
-        </Feature>
-        <ItemDimensions>
-          <Height Units="hundredths-inches">59</Height>
-          <Length Units="hundredths-inches">323</Length>
-          <Weight Units="hundredths-pounds">20</Weight>
-          <Width Units="hundredths-inches">240</Width>
-        </ItemDimensions>
-        <Label>Protech Electronics & Technology Limited</Label>
-        <ListPrice>
-          <Amount>1050</Amount>
-          <CurrencyCode>GBP</CurrencyCode>
-          <FormattedPrice>£10.50</FormattedPrice>
-        </ListPrice>
-        <Manufacturer>Protech Electronics & Technology Limited</Manufacturer>
-        <Model>4PET0301DP</Model>
-        <MPN>4PET0301DP</MPN>
-        <NumberOfItems>1</NumberOfItems>
-        <PackageDimensions>
-          <Height Units="hundredths-inches">213</Height>
-          <Length Units="hundredths-inches">953</Length>
-          <Weight Units="hundredths-pounds">40</Weight>
-          <Width Units="hundredths-inches">575</Width>
-        </PackageDimensions>
-        <PackageQuantity>1</PackageQuantity>
-        <PartNumber>4PET0301DP</PartNumber>
-        <ProductGroup>CE</ProductGroup>
-        <ProductTypeName>CABLE_OR_ADAPTER</ProductTypeName>
-        <Publisher>Protech Electronics & Technology Limited</Publisher>
-        <ReleaseDate>2014-05-15</ReleaseDate>
-        <Size>3 Port</Size>
-        <SKU>HD-SWCAB3</SKU>
-        <Studio>Protech Electronics & Technology Limited</Studio>
-        <Title>
-        Portta Version 1.4 HDMI 3 Port 3x1 Switch Switcher with Pigtail Full 1080p 3D and 4Kx2K compatible 1.3
-        </Title>
-      </ItemAttributes>
-      <OfferSummary>
-        <LowestNewPrice>
-          <Amount>31</Amount>
-          <CurrencyCode>GBP</CurrencyCode>
-          <FormattedPrice>£0.31</FormattedPrice>
-        </LowestNewPrice>
-        <TotalNew>28</TotalNew>
-        <TotalUsed>0</TotalUsed>
-        <TotalCollectible>0</TotalCollectible>
-        <TotalRefurbished>0</TotalRefurbished>
-      </OfferSummary>
-    </Item>
-  </Items>
-</ItemLookupResponse>
+  - Can add amazon link to homepage list, and state your budget
+
+  - Backend parses link and can access current price using Amazon API
+
+  - Can identify products that are in budget and highlight them
+
+  - Saves original product price and shows difference on page load.
+
+  - Styling with JQuery, Bootstrap, JS
+
+## Thoughts and ideas for taking this further
+
+Overall i thought this was a fab MVP.
+
+The key problem that has arisen however is the limit at which we can make API calls.
+
+We'd like to display 15 products on the homepage, but after around 8 calls a second Amazon will throttle API access.
+
+I'd also like to make this social - so other users can comment on products you've added (perhaps showing you where else you could buy them).
+
+And give users the ability to sign up, so that they can see only the products they've added, and receive email/text alerts when amazon makes a price change that brings them within budget.
+
+To acheive both of these developments i'd like to look more into background proccessing of the API price checks. So they can be staggered, and checked without the need for a page load.
+
+Overall though, i'm super happy with what we acheived in the 48 hour hackathon. I think it provides a strong and beautiful MVP that could be used by a consumer immediately.
+
+## How to use?
+
+### Run locally
+
+clone and download this repo.
 ```
+cd price-drop-app
+rails s
+```
+open http://localhost:3000 in your favourite browser.
+
+### Run tests
+
+clone and download this repo.
+```
+cd price-drop-app
+rspec
+```
+
+## Technologies
+- Ruby on Rails - Expandable framework will allow us to add user accounts easily.
+- JS - For displaying price changes and alerts.
+- JQuery/Bootstrap/HAML/Sass - UI markup and styling.
+- PostgreSQL - DB for storing products and original prices, and users budget.
+- [Vacuum Gem](https://rubygems.org/gems/vacuum/versions/1.2.0) - access the Amazon API.
+
+## How to contribute?
+
+Always love to hear feedback! Simply send a pull request or an email with your thoughts.
+
+I'd be fascinated to learn of other techniques for mass querying Amazon for prices (especially if does not involve screen scraping).
+
+Thanks for reading,
+
+Dan
+
